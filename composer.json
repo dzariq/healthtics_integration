@@ -17,7 +17,8 @@
         "laravel/framework": "5.1.*",
         "teepluss/theme": "dev-master",
         "barryvdh/laravel-debugbar": "^2.0",
-        "laravelcollective/html": "^5.1"
+        "laravelcollective/html": "^5.1",
+        "uepg/laravel-sybase": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
