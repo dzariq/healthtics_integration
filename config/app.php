@@ -184,5 +184,6 @@ return [
         'Helper' => App\Classes\Helper::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        TechScope\SqlServer\SqlServerServiceProvider::class,
     ],
 ];
