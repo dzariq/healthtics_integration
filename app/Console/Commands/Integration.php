@@ -29,7 +29,7 @@ class Integration extends Command
      */
     public function handle()
     {
-        $test = DB::table('eklinikal_all_data')->get();
+        $test = DB::table('eklinikal_all_data')->limit(5)->get();
         print_r($test);die;
     }
 }
