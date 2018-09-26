@@ -8,7 +8,7 @@
         {
             "name": "Mohd Khairulnizam Md Dahari",
             "email": "me@kayrules.com",
-            "homepage":"https://github.com/kayrules/laravel5-starter",
+            "homepage": "https://github.com/kayrules/laravel5-starter",
             "role": "developer"
         }
     ],
@@ -18,7 +18,7 @@
         "teepluss/theme": "dev-master",
         "barryvdh/laravel-debugbar": "^2.0",
         "laravelcollective/html": "^5.1",
-        "uepg/laravel-sybase": "~2.0"
+        "uepg/laravel-sybase": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
