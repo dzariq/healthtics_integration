@@ -18,7 +18,8 @@
         "teepluss/theme": "dev-master",
         "barryvdh/laravel-debugbar": "^2.0",
         "laravelcollective/html": "^5.1",
-        "uepg/laravel-sybase": "~1.0"
+        "uepg/laravel-sybase": "~1.0",
+        "techscope/laravel-sqlserver": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
