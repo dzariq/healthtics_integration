@@ -8,6 +8,7 @@ use DB;
 
 class Integration extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
@@ -30,6 +31,13 @@ class Integration extends Command
     public function handle()
     {
         $test = DB::table('eklinikal_all_data')->limit(5)->get();
-        print_r($test);die;
+//        print_r($test);
+//        die;
+
+        $patientData = new \App\Models\PatientData;
+        $patientData->changeConnection('mysql');
+        $data = $patientData->limit(10)->get();
+        print_r($data);
     }
+
 }
