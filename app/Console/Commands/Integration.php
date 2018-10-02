@@ -30,9 +30,9 @@ class Integration extends Command
      */
     public function handle()
     {
-        $test = DB::table('eklinikal_all_data')->limit(5)->get();
-//        print_r($test);
-//        die;
+        $test = DB::table('eklinikal_all_data')->limit(1)->get();
+        print_r($test);
+        die;
 
         $patientData = new \App\Models\PatientData;
         $patientData->changeConnection('mysql');
