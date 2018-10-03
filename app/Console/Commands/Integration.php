@@ -111,7 +111,7 @@ class Integration extends Command
         $patientAddrInHealthtics->impaddr_hp = $patient->fax_no;
         $patientAddrInHealthtics->imclient_id = 1;
 //        $patientAddrInHealthtics->imhostel_name = $patient->hostel;
-        $patientAddrInHealthtics->imhostel_room = $patient->room_no;
+//        $patientAddrInHealthtics->imhostel_room = $patient->room_no;
         $patientAddrInHealthtics->impaddr_edited_date = $editedDate;
         $patientAddrInHealthtics->impaddr_edited_time = $editedTime;
         $patientAddrInHealthtics->save();
