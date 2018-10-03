@@ -37,11 +37,11 @@ class Integration extends Command
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
 //        print_r(($parentData));
 //        die;
-
         //loop data
         foreach ($parentData as $patient)
         {
             DB::beginTransaction();
+            $patientID = $patient->nric != '' ? $patient->nric : $patient->old_nric;
 
 
             //check in biodata healthics 
@@ -49,13 +49,13 @@ class Integration extends Command
             if (!$patientInHealthtics)
             {
                 $patientInHealthtics = new \App\Models\PatientData;
-                $this->populateBiodata($patientInHealthtics, $patient);
+                $this->populateBiodata($patientInHealthtics, $patient, $patientID);
             }
             else
             {
                 foreach ($patientInHealthtics as $localData)
                 {
-                    $this->populateBiodata($localData, $patient);
+                    $this->populateBiodata($localData, $patient,$patientID);
                 }
             }
 
@@ -63,9 +63,8 @@ class Integration extends Command
         }
     }
 
-    public function populateBiodata($patientInHealthtics, $patient)
+    public function populateBiodata($patientInHealthtics, $patient,$patientID)
     {
-        $patientID = $patient->nric != '' ? $patient->nric : $patient->old_nric;
         $editedDate = date('Y-m-d');
         $editedTime = date('H:i:s');
 
@@ -92,7 +91,7 @@ class Integration extends Command
         $patientInHealthtics->impb_edited_date = $editedDate;
         $patientInHealthtics->impb_edited_time = $editedTime;
         $patientInHealthtics->point_id = 0;
-         $patientInHealthtics->save();
+        $patientInHealthtics->save();
 
         $patientAddrInHealthtics = \App\Models\PatientAddress::where('impb_id', $patientInHealthtics->id)->first();
         if (!$patientAddrInHealthtics)
@@ -115,7 +114,7 @@ class Integration extends Command
         $patientAddrInHealthtics->imhostel_room = $patient->room_no;
         $patientAddrInHealthtics->impaddr_edited_date = $editedDate;
         $patientAddrInHealthtics->impaddr_edited_time = $editedTime;
-          $patientAddrInHealthtics->save();
+        $patientAddrInHealthtics->save();
     }
 
     public function religionMap($name)
