@@ -30,7 +30,8 @@ class Integration extends Command
      */
     public function handle()
     {
-        $today = date('j/n/Y h:i A');
+//        $today = date('j/n/Y h:i A');
+        $today = date('j/n/Y');
         print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->whereDate('date_change','<',$today)->limit(2000)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('type', 'STAF')->limit(100)->get();
