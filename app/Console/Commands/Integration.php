@@ -92,7 +92,7 @@ class Integration extends Command
         $patientInHealthtics->impb_edited_date = $editedDate;
         $patientInHealthtics->impb_edited_time = $editedTime;
         $patientInHealthtics->point_id = 0;
-        // $patientInHealthtics->save();
+         $patientInHealthtics->save();
 
         $patientAddrInHealthtics = \App\Models\PatientAddress::where('impb_id', $patientInHealthtics->id)->first();
         if (!$patientAddrInHealthtics)
@@ -115,7 +115,7 @@ class Integration extends Command
         $patientAddrInHealthtics->imhostel_room = $patient->room_no;
         $patientAddrInHealthtics->impaddr_edited_date = $editedDate;
         $patientAddrInHealthtics->impaddr_edited_time = $editedTime;
-        //  $patientAddrInHealthtics->save();
+          $patientAddrInHealthtics->save();
     }
 
     public function religionMap($name)
