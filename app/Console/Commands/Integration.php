@@ -93,12 +93,13 @@ class Integration extends Command
         $patientInHealthtics->point_id = 0;
         $patientInHealthtics->save();
 
-        $patientAddrInHealthtics = \App\Models\PatientAddress::where('impb_id', $patientInHealthtics->id)->first();
+        $patientAddrInHealthtics = \App\Models\PatientAddress::where('impb_id', $patientInHealthtics->impb_id)->first();
         if (!$patientAddrInHealthtics)
         {
             $patientAddrInHealthtics = new \App\Models\PatientAddress;
         }
 
+        $patientAddrInHealthtics->impb_id = $patientInHealthtics->impb_id;
         $patientAddrInHealthtics->impaddr_add1 = $patient->home_ad1;
         $patientAddrInHealthtics->impaddr_add2 = $patient->home_ad2;
         $patientAddrInHealthtics->impaddr_state = $patient->home_country;
