@@ -32,8 +32,8 @@ class Integration extends Command
     {
 //        $today = date('j/n/Y h:i A');
         $today = date('j/n/Y');
-       // print_r($today);die;
-        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->where('date_change','<',$today)->orderby('date_change','ASC')->limit(1)->get();
+        // print_r($today);die;
+        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->where('date_change', '<', $today)->orderby('date_change', 'ASC')->limit(1)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
         print_r(($parentData));
         die;
@@ -43,21 +43,19 @@ class Integration extends Command
         {
             DB::beginTransaction();
 
-            $patientID = $patient->nric != '' ? $patient->nric : $patient->old_nric;
-            $editedDate = '';
-            $editedTime = '';
+
             //check in biodata healthics 
             $patientInHealthtics = \App\Models\PatientData::where('impb_no', $patientID)->get();
             if (!$patientInHealthtics)
             {
                 $patientInHealthtics = new \App\Models\PatientData;
-                $this->populateBiodata($patientInHealthtics,$patient);
+                $this->populateBiodata($patientInHealthtics, $patient);
             }
             else
             {
                 foreach ($patientInHealthtics as $localData)
                 {
-                    $this->populateBiodata($localData,$patient);
+                    $this->populateBiodata($localData, $patient);
                 }
             }
 
@@ -65,8 +63,12 @@ class Integration extends Command
         }
     }
 
-    public function populateBiodata($patientInHealthtics,$patient)
+    public function populateBiodata($patientInHealthtics, $patient)
     {
+        $patientID = $patient->nric != '' ? $patient->nric : $patient->old_nric;
+        $editedDate = date('Y-m-d');
+        $editedTime = date('H:i:s');
+
         $patientInHealthtics->impb_card_no = $patient->staf_no;
         $patientInHealthtics->impfx_id = $patient->title;
         $patientInHealthtics->impb_name = $patient->name;
@@ -161,7 +163,9 @@ class Integration extends Command
         else if ($name == 'Bahai')
         {
             return 11;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
