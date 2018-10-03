@@ -35,8 +35,8 @@ class Integration extends Command
         // print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->where('date_change', '<', $today)->orderby('date_change', 'ASC')->limit(1)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
-        print_r(($parentData));
-        die;
+//        print_r(($parentData));
+//        die;
 
         //loop data
         foreach ($parentData as $patient)
