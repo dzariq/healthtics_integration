@@ -51,13 +51,13 @@ class Integration extends Command
             if (!$patientInHealthtics)
             {
                 $patientInHealthtics = new \App\Models\PatientData;
-                $this->populateBiodata($patientInHealthtics);
+                $this->populateBiodata($patientInHealthtics,$patient);
             }
             else
             {
                 foreach ($patientInHealthtics as $localData)
                 {
-                    $this->populateBiodata($localData);
+                    $this->populateBiodata($localData,$patient);
                 }
             }
 
@@ -65,7 +65,7 @@ class Integration extends Command
         }
     }
 
-    public function populateBiodata($patientInHealthtics)
+    public function populateBiodata($patientInHealthtics,$patient)
     {
         $patientInHealthtics->impb_card_no = $patient->staf_no;
         $patientInHealthtics->impfx_id = $patient->title;
