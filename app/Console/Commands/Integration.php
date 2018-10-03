@@ -81,7 +81,7 @@ class Integration extends Command
         $patientInHealthtics->imnt_id = 0;
         $patientInHealthtics->imr_id = $this->religionMap($patient->religion);
         $patientInHealthtics->imrc_id = $patient->race;
-        $patientInHealthtics->imna_id = $patient->nationality;
+//        $patientInHealthtics->imna_id = $patient->nationality;
         $patientInHealthtics->impb_occupation = $patient->occupation;
         $patientInHealthtics->impb_employer = 0;
         $patientInHealthtics->impb_status = $patient->status;
