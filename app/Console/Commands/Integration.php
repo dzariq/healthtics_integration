@@ -30,7 +30,7 @@ class Integration extends Command
      */
     public function handle()
     {
-        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->limit(100)->get();
+        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->limit(2000)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('type', 'STAF')->limit(100)->get();
         print_r(count($parentData));
         die;
