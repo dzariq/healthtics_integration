@@ -10,6 +10,7 @@ class PatientAddress extends Model
     protected $connection = 'mysql';
     protected $table = 'im_patient_addr';
     protected $primaryKey = 'impaddr_id';
+    public $timestamps = false;
 
     public function changeConnection($conn)
     {
