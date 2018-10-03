@@ -30,7 +30,9 @@ class Integration extends Command
      */
     public function handle()
     {
-        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->limit(2000)->get();
+        $today = date('j/n/Y h:i A');
+        print_r($today);die;
+        $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->whereDate('date_change','<',$today)->limit(2000)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('type', 'STAF')->limit(100)->get();
         print_r(count($parentData));
         die;
@@ -75,7 +77,7 @@ class Integration extends Command
         $patientInHealthtics->imrsd_id = 0;
         $patientInHealthtics->imls_id = 0;
         $patientInHealthtics->imnt_id = 0;
-        $patientInHealthtics->imr_id = $patient->religion;
+        $patientInHealthtics->imr_id = $this->religionMap($patient->religion);
         $patientInHealthtics->imrc_id = $patient->race;
         $patientInHealthtics->imna_id = $patient->nationality;
         $patientInHealthtics->impb_occupation = $patient->occupation;
@@ -111,6 +113,54 @@ class Integration extends Command
         $patientAddrInHealthtics->impaddr_edited_date = $editedDate;
         $patientAddrInHealthtics->impaddr_edited_time = $editedTime;
         //  $patientAddrInHealthtics->save();
+    }
+
+    public function religionMap($name)
+    {
+        if ($name == 'Islam')
+        {
+            return 1;
+        }
+        else if ($name == 'Hindu')
+        {
+            return 2;
+        }
+        else if ($name == 'Kristian')
+        {
+            return 3;
+        }
+        else if ($name == 'Buddha')
+        {
+            return 4;
+        }
+        else if ($name == 'Tiada Agama')
+        {
+            return 5;
+        }
+        else if ($name == 'Lain Agama')
+        {
+            return 6;
+        }
+        else if ($name == 'Maklumat Tiada')
+        {
+            return 7;
+        }
+        else if ($name == 'Sikhism')
+        {
+            return 8;
+        }
+        else if ($name == 'Tao')
+        {
+            return 9;
+        }
+        else if ($name == 'Konfusianisme')
+        {
+            return 10;
+        }
+        else if ($name == 'Bahai')
+        {
+            return 11;
+        }
     }
 
 }
