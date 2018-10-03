@@ -161,6 +161,8 @@ class Integration extends Command
         else if ($name == 'Bahai')
         {
             return 11;
+        }else{
+            return 0;
         }
     }
 
