@@ -35,8 +35,8 @@ class Integration extends Command
         // print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('type', 'STAF')->where('date_change', '<', $today)->orderby('date_change', 'ASC')->limit(1)->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
-//        print_r(($parentData));
-//        die;
+        print_r(($parentData));
+        die;
         //loop data
         foreach ($parentData as $patient)
         {
@@ -55,7 +55,7 @@ class Integration extends Command
             {
                 foreach ($patientInHealthtics as $localData)
                 {
-                    $this->populateBiodata($localData, $patient,$patientID);
+                    $this->populateBiodata($localData, $patient, $patientID);
                 }
             }
 
@@ -63,7 +63,7 @@ class Integration extends Command
         }
     }
 
-    public function populateBiodata($patientInHealthtics, $patient,$patientID)
+    public function populateBiodata($patientInHealthtics, $patient, $patientID)
     {
         $editedDate = date('Y-m-d');
         $editedTime = date('H:i:s');
@@ -81,7 +81,7 @@ class Integration extends Command
         $patientInHealthtics->imnt_id = 0;
         $patientInHealthtics->imr_id = $this->religionMap($patient->religion);
         $patientInHealthtics->imrc_id = $patient->race;
-//        $patientInHealthtics->imna_id = $patient->nationality;
+        $patientInHealthtics->imna_id = $patient->nationality;
         $patientInHealthtics->impb_occupation = $patient->occupation;
         $patientInHealthtics->impb_employer = 0;
         $patientInHealthtics->impb_status = $patient->status;
