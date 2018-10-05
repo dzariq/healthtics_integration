@@ -69,22 +69,22 @@ class Integration extends Command
         $editedTime = date('H:i:s');
 
         $patientInHealthtics->impb_card_no = $patient->staf_no;
-        $patientInHealthtics->impfx_id = $patient->title;
+        $patientInHealthtics->impfx_id = $this->titleMap($patient->title);
         $patientInHealthtics->impb_name = $patient->name;
         $patientInHealthtics->imtn_id = 1;
         $patientInHealthtics->impb_no = $patientID;
-        $patientInHealthtics->img_id = $patient->gender;
+        $patientInHealthtics->img_id = $this->genderMap($patient->gender);
         $patientInHealthtics->impb_birthday = $patient->dob;
         $patientInHealthtics->imms_id = 2;
         $patientInHealthtics->imrsd_id = 0;
         $patientInHealthtics->imls_id = 0;
         $patientInHealthtics->imnt_id = 0;
         $patientInHealthtics->imr_id = $this->religionMap($patient->religion);
-        $patientInHealthtics->imrc_id = $patient->race;
-        $patientInHealthtics->imna_id = $patient->nationality;
+        $patientInHealthtics->imrc_id = $this->raceMap($patient->race);
+        $patientInHealthtics->imna_id = $this->countryMap($patient->nationality);
         $patientInHealthtics->impb_occupation = $patient->occupation;
         $patientInHealthtics->impb_employer = 0;
-        $patientInHealthtics->impb_status = $patient->status;
+        $patientInHealthtics->impb_status = $this->statusMap($patient->status);
         $patientInHealthtics->imc_id = 3; //USIM
         $patientInHealthtics->imclient_id = 1;
         $patientInHealthtics->impb_edited_by = 1;
@@ -102,7 +102,7 @@ class Integration extends Command
         $patientAddrInHealthtics->impb_id = $patientInHealthtics->impb_id;
         $patientAddrInHealthtics->impaddr_add1 = $patient->home_ad1;
         $patientAddrInHealthtics->impaddr_add2 = $patient->home_ad2;
-        $patientAddrInHealthtics->impaddr_state = $patient->home_country;
+        $patientAddrInHealthtics->impaddr_state = $this->countryMap($patient->home_country);
         $patientAddrInHealthtics->impaddr_poscode = $patient->home_postcode;
         $patientAddrInHealthtics->impaddr_tel = $patient->home_tel;
         $patientAddrInHealthtics->impaddr_officeno = $patient->office_tel;
@@ -118,56 +118,73 @@ class Integration extends Command
         $patientAddrInHealthtics->save();
     }
 
-    public function religionMap($name)
+    public function citizenMap($name)
     {
-        if ($name == 'Islam')
-        {
-            return 1;
-        }
-        else if ($name == 'Hindu')
-        {
-            return 2;
-        }
-        else if ($name == 'Kristian')
-        {
-            return 3;
-        }
-        else if ($name == 'Buddha')
-        {
-            return 4;
-        }
-        else if ($name == 'Tiada Agama')
-        {
-            return 5;
-        }
-        else if ($name == 'Lain Agama')
-        {
-            return 6;
-        }
-        else if ($name == 'Maklumat Tiada')
-        {
-            return 7;
-        }
-        else if ($name == 'Sikhism')
-        {
-            return 8;
-        }
-        else if ($name == 'Tao')
-        {
-            return 9;
-        }
-        else if ($name == 'Konfusianisme')
-        {
-            return 10;
-        }
-        else if ($name == 'Bahai')
-        {
-            return 11;
-        }
-        else
-        {
+        $model = \App\Models\Citizen::where('imc_name_ss',$name)->first();
+        if($model){
+            return $model->imc_id;
+        }else{
             return 0;
         }
+    }
+
+    public function countryMap($name)
+    {
+        $model = \App\Models\Country::where('imct_name_ss',$name)->first();
+        if($model){
+            return $model->imct_id;
+        }else{
+            return 0;
+        }
+    }
+    
+    public function religionMap($name)
+    {
+        $model = \App\Models\Religion::where('imr_name_ss',$name)->first();
+        if($model){
+            return $model->imr_id;
+        }else{
+            return 0;
+        }
+    }
+    
+    public function genderMap($name)
+    {
+        $model = \App\Models\Gender::where('img_name_ss',$name)->first();
+        if($model){
+            return $model->img_id;
+        }else{
+            return 0;
+        }
+    }
+    
+    public function titleMap($name)
+    {
+        $model = \App\Models\Title::where('impfx_name_ss',$name)->first();
+        if($model){
+            return $model->impfx_id;
+        }else{
+            return 0;
+        }
+    }
+    
+    public function raceMap($name)
+    {
+        $model = \App\Models\Race::where('imrc_name_ss',$name)->first();
+        if($model){
+            return $model->imrc_id;
+        }else{
+            return 0;
+        }
+    }
+    public function statusMap($name)
+    {
+//        $model = \App\Models\Race::where('imrc_name_ss',$name)->first();
+//        if($model){
+//            return $model->imrc_id;
+//        }else{
+            return 0;
+//        }
     }
 
 }
