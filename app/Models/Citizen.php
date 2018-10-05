@@ -9,7 +9,7 @@ class Citizen extends Model
 
     protected $connection = 'mysql';
     protected $table = 'im_citizen_cd';
-    protected $primaryKey = 'imc_id';
+    protected $primaryKey = 'imctz_id';
     public $timestamps = false;
 
     public function changeConnection($conn)

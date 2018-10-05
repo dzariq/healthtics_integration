@@ -120,9 +120,9 @@ class Integration extends Command
 
     public function citizenMap($name)
     {
-        $model = \App\Models\Citizen::where('imc_name_ss',$name)->first();
+        $model = \App\Models\Citizen::where('imctz_name_ss',$name)->first();
         if($model){
-            return $model->imc_id;
+            return $model->imctz_id;
         }else{
             return 0;
         }
