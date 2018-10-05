@@ -120,70 +120,90 @@ class Integration extends Command
 
     public function citizenMap($name)
     {
-        $model = \App\Models\Citizen::where('imctz_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Citizen::where('imctz_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->imctz_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
 
     public function countryMap($name)
     {
-        $model = \App\Models\Country::where('imct_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Country::where('imct_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->imct_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
-    
+
     public function religionMap($name)
     {
-        $model = \App\Models\Religion::where('imr_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Religion::where('imr_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->imr_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
-    
+
     public function genderMap($name)
     {
-        $model = \App\Models\Gender::where('img_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Gender::where('img_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->img_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
-    
+
     public function titleMap($name)
     {
-        $model = \App\Models\Title::where('impfx_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Title::where('impfx_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->impfx_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
-    
+
     public function raceMap($name)
     {
-        $model = \App\Models\Race::where('imrc_name_ss',$name)->first();
-        if($model){
+        $model = \App\Models\Race::where('imrc_name_ss', $name)->first();
+        if ($model)
+        {
             return $model->imrc_id;
-        }else{
+        }
+        else
+        {
             return 0;
         }
     }
+
     public function statusMap($name)
     {
-//        $model = \App\Models\Race::where('imrc_name_ss',$name)->first();
-//        if($model){
-//            return $model->imrc_id;
-//        }else{
+        if ($name == 'Aktif')
+        {
+            return 1;
+        }else{
             return 0;
+        }
 //        }
     }
 
