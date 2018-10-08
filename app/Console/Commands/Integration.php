@@ -31,14 +31,8 @@ class Integration extends Command
     public function handle()
     {
         $today = date('M j Y');
-        $todayStart = date('M j Y');
-        $todayStart = $todayStart . ' 00:00:00';
-        $todayEnd = date('j/n/Y');
-        $todayEnd = $todayEnd . ' 23:59:59';
-        $yesterdayStart = date('j/n/Y', strtotime("-1 days"));
-        $yesterdayStart = $yesterdayStart . ' 00:00:00';
-        $yesterdayEnd = date('j/n/Y', strtotime("-1 days"));
-        $yesterdayEnd = $yesterdayEnd . ' 23:59:59';
+        $yesterday = date('M j Y', strtotime("-1 days"));
+       
 //      print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $today)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
