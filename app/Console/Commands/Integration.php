@@ -31,10 +31,15 @@ class Integration extends Command
     public function handle()
     {
 //        $today = date('j/n/Y h:i A');
-        $todayStart = date('d/m/Y 00:00:00');
-        $todayEnd = date('d/m/Y 23:59:59');
-        $yesterdayStart = date('d/m/Y 00:00:00',strtotime("-1 days"));
-        $yesterdayEnd = date('d/m/Y 23:59:59',strtotime("-1 days"));
+        $todayStart = date('d/m/Y');
+        $todayStart = $todayStart . ' 00:00:00';
+        $todayEnd = date('d/m/Y');
+        $todayEnd = $todayEnd . ' 23:59:59';
+        $yesterdayStart = date('d/m/Y', strtotime("-1 days"));
+        $yesterdayStart = $yesterdayStart . ' 00:00:00';
+        $yesterdayEnd = date('d/m/Y', strtotime("-1 days"));
+        $yesterdayEnd = $yesterdayEnd . ' 23:59:59';
+
         // print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '>=', $todayStart)->where('date_change', '<=', $todayEnd)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
@@ -204,7 +209,9 @@ class Integration extends Command
         if ($name == 'Aktif')
         {
             return 1;
-        }else{
+        }
+        else
+        {
             return 0;
         }
 //        }
