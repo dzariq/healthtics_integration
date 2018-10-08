@@ -30,7 +30,7 @@ class Integration extends Command
      */
     public function handle()
     {
-        $today = date('j/n/Y h:i A');
+        $today = date('j/n/Y h:i:s A');
         $todayStart = date('d/m/Y');
         $todayStart = $todayStart . ' 00:00:00';
         $todayEnd = date('d/m/Y');
