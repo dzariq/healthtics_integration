@@ -32,7 +32,7 @@ class Integration extends Command
     {
 //        $today = date('j/n/Y h:i A');
         $todayStart = date('d/m/Y');
-        $todayStart = $todayStart . ' 00:00:00';
+//        $todayStart = $todayStart . ' 00:00:00';
         $tt = $todayStart . ' 12:00:00';
         $todayEnd = date('d/m/Y');
         $todayEnd = $todayEnd . ' 23:59:59';
