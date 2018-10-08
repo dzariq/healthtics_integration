@@ -40,7 +40,7 @@ class Integration extends Command
         $yesterdayStart = $yesterdayStart . ' 00:00:00';
         $yesterdayEnd = date('d/m/Y', strtotime("-1 days"));
         $yesterdayEnd = $yesterdayEnd . ' 23:59:59';
-        // print_r($today);die;
+      print_r($tt);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $tt)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
         print_r(($parentData));
