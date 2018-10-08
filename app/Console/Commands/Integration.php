@@ -31,10 +31,12 @@ class Integration extends Command
     public function handle()
     {
 //        $today = date('j/n/Y h:i A');
-        $today = date('j/n/Y');
-        $yesterday = date('j/n/Y',strtotime("-1 days"));
+        $todayStart = date('d/m/Y 00:00:00');
+        $todayEnd = date('d/m/Y 23:59:59');
+        $yesterdayStart = date('d/m/Y 00:00:00',strtotime("-1 days"));
+        $yesterdayEnd = date('d/m/Y 23:59:59',strtotime("-1 days"));
         // print_r($today);die;
-        $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $today)->orderby('date_change', 'ASC')->get();
+        $parentData = DB::table('eklinikal_all_data')->where('date_change', '>=', $todayStart)->where('date_change', '<=', $todayEnd)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
         print_r(($parentData));
         die;
@@ -85,7 +87,7 @@ class Integration extends Command
         $patientInHealthtics->imna_id = $this->countryMap($patient->nationality);
         $patientInHealthtics->impb_occupation = $patient->occupation;
         $patientInHealthtics->impb_employer = 0;
-        $patientInHealthtics->impb_status = $this->statusMap($patient->status);
+        $patientInHealthtics->impb_status = $this->statusMap($patient->kodstatus);
         $patientInHealthtics->imc_id = 3; //USIM
         $patientInHealthtics->imclient_id = 1;
         $patientInHealthtics->impb_edited_by = 1;
