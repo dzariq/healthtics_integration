@@ -30,19 +30,19 @@ class Integration extends Command
      */
     public function handle()
     {
-        $today = date('j/n/Y h:i:s A');
-        $todayStart = date('d/m/Y');
+//        $today = date('j/n/Y h:i:s A');
+        $todayStart = date('j/n/Y');
         $todayStart = $todayStart . ' 00:00:00';
-        $todayEnd = date('d/m/Y');
+        $todayEnd = date('j/n/Y');
         $todayEnd = $todayEnd . ' 23:59:59';
-        $yesterdayStart = date('d/m/Y', strtotime("-1 days"));
+        $yesterdayStart = date('j/n/Y', strtotime("-1 days"));
         $yesterdayStart = $yesterdayStart . ' 00:00:00';
-        $yesterdayEnd = date('d/m/Y', strtotime("-1 days"));
+        $yesterdayEnd = date('j/n/Y', strtotime("-1 days"));
         $yesterdayEnd = $yesterdayEnd . ' 23:59:59';
 //      print_r($tt);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '>=', $todayStart)->where('date_change', '<=', $todayEnd)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
-        print_r(($today));
+        print_r(($parentData));
         die;
         //loop data
         foreach ($parentData as $patient)
