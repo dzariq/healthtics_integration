@@ -30,8 +30,8 @@ class Integration extends Command
      */
     public function handle()
     {
-//        $today = date('j/n/Y h:i:s A');
-        $todayStart = date('j/n/Y');
+        $today = date('M j Y');
+        $todayStart = date('M j Y');
         $todayStart = $todayStart . ' 00:00:00';
         $todayEnd = date('j/n/Y');
         $todayEnd = $todayEnd . ' 23:59:59';
@@ -39,7 +39,7 @@ class Integration extends Command
         $yesterdayStart = $yesterdayStart . ' 00:00:00';
         $yesterdayEnd = date('j/n/Y', strtotime("-1 days"));
         $yesterdayEnd = $yesterdayEnd . ' 23:59:59';
-      print_r($todayStart);die;
+      print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '>=', $todayStart)->where('date_change', '<=', $todayEnd)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
         print_r(($parentData));
