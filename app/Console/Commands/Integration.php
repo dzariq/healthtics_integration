@@ -85,7 +85,7 @@ class Integration extends Command
         $patientInHealthtics->imna_id = $this->countryMap($patient->nationality);
         $patientInHealthtics->impb_occupation = $patient->occupation;
         $patientInHealthtics->impb_employer = 0;
-        $patientInHealthtics->impb_status = $this->statusMap($patient->kodstatus);
+        $patientInHealthtics->impb_status = $patient->kodstatus;
         $patientInHealthtics->imc_id = 3; //USIM
         $patientInHealthtics->imclient_id = 1;
         $patientInHealthtics->impb_edited_by = 1;
@@ -205,7 +205,7 @@ class Integration extends Command
         }
         else
         {
-            return 0;
+            return 2;
         }
 //        }
     }
