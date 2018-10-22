@@ -34,7 +34,7 @@ class Integration extends Command
         $yesterday = date('M j Y', strtotime("-1 days"));
        
 //      print_r($today);die;
-        $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $today)->orderby('date_change', 'ASC')->get();
+        $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $yesterday)->orderby('date_change', 'ASC')->get();
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
 //        print_r(($parentData));
 //        die;
