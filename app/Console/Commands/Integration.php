@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 use DB;
+use Log;
 
 class Integration extends Command
 {
@@ -32,9 +33,17 @@ class Integration extends Command
     {
         $today = date('M j Y');
         $yesterday = date('M j Y', strtotime("-1 days"));
-       
+Log::info('integration run');       
 //      print_r($today);die;
         $parentData = DB::table('eklinikal_all_data')->where('date_change', '=', $yesterday)->orderby('date_change', 'ASC')->get();
+
+//$parentData = DB::table('eklinikal_all_data')->where('date_change', '<=', $yesterday)->where('date_change','>=','Nov 15 2018')->orderby('date_change', 'ASC')->get();
+
+
+//$parentData = DB::table('eklinikal_all_data')->where('nric','950621035599')->first();
+
+
+//print_r(($parentData));die;
 //        $parentData = DB::table('eklinikal_all_data')->where('date_change', '!=', '')->where('date_change','<',$today)->where('type', 'STAF')->orderby('date_change','ASC')->limit(100)->get();
 //        print_r(($parentData));
 //        die;
@@ -47,7 +56,7 @@ class Integration extends Command
 
             //check in biodata healthics 
             $patientInHealthtics = \App\Models\PatientData::where('impb_no', $patientID)->get();
-            if (!$patientInHealthtics)
+            if (count($patientInHealthtics) == 0)
             {
                 $patientInHealthtics = new \App\Models\PatientData;
                 $this->populateBiodata($patientInHealthtics, $patient, $patientID);
